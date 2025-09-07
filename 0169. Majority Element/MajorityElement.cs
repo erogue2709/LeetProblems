@@ -19,7 +19,7 @@ public class Solution
 }
 
 
-//From public Solution https://leetcode.com/u/5ldv/
+//Boyer–Moore majority vote implementation by https://leetcode.com/u/5ldv/
 public class Solution {
     public int MajorityElement(int[] nums) {
         int Majority = 0;
