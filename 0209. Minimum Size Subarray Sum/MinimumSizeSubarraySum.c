@@ -3,7 +3,7 @@ int minSubArrayLen(int target, int* nums, int numsSize) {
     int lower = 0, upper = 0;
 
     int sum = nums[lower];
-    while(upper < numsSize){
+    while(1){
         if(sum >= target && result > upper - lower + 1)
             result = upper - lower + 1;
 
