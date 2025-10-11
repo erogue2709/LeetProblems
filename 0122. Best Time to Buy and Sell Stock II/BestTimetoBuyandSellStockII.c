@@ -9,7 +9,7 @@ int maxProfit(int* prices, int pricesSize) {
             upperBound++;
         if(prices[upperBound] - prices[lowerBound] > 0 )
             profit += prices[upperBound] - prices[lowerBound];
-        lowerBound = upperBound;
+        lowerBound = ++upperBound;
     }
     return profit;
 }
