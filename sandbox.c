@@ -3,25 +3,25 @@
 #include <stdbool.h>
 #include <string.h>
 
-int maxProfit(int* prices, int pricesSize) {
-    int profit = 0, lowerBound = 0, upperBound;
+int hIndex(int* citations, int citationsSize) {
+    int* bucket = (int*)calloc(citationsSize+1, sizeof(int));
+    for(int i = 0; i < citationsSize; i++)
+        bucket[citations[i] >= citationsSize? citationsSize : citations[i]]++;
 
-    while(lowerBound < pricesSize){
-        while(lowerBound + 1 < pricesSize && prices[lowerBound] > prices[lowerBound+1])
-            lowerBound++;
-        upperBound = lowerBound;
-        while(upperBound + 1 < pricesSize && prices[upperBound] < prices[upperBound+1])
-            upperBound++;
-        if(prices[upperBound] - prices[lowerBound] > 0 )
-            profit += prices[upperBound] - prices[lowerBound];
-        lowerBound = ++upperBound;
+    int cptH = 0;
+    for(int j = citationsSize; j >= 0; j--){
+        cptH += bucket[j];
+        if(cptH>=j) return cptH;
     }
-    return profit;
+    return 0;
 }
 
 int main(){
-    int prices[] = {7,1,5,3,6,4};
-    printf("%d",maxProfit(prices, 6));
+    int array[] = {3,0,6,1,5};
+    int arraySize = 5;
+    printf("%d\n",hIndex(array, arraySize));
+    for(int i = 0; i < arraySize; i++)
+        printf("%d\t", array[i]);
     return 0;
 }
 
