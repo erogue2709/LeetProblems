@@ -3,23 +3,29 @@
 #include <stdbool.h>
 #include <string.h>
 
-int hIndex(int* citations, int citationsSize) {
-    int* bucket = (int*)calloc(citationsSize+1, sizeof(int));
-    for(int i = 0; i < citationsSize; i++)
-        bucket[citations[i] >= citationsSize? citationsSize : citations[i]]++;
-
-    int cptH = 0;
-    for(int j = citationsSize; j >= 0; j--){
-        cptH += bucket[j];
-        if(cptH>=j) return cptH;
+bool inBound(char c){ return c > 47 && c < 58 || c > 64 && c < 91; }
+bool isPalindrome(char* s) {
+    int lower = 0, upper = strlen(s)-1;
+    while(lower <= upper){
+        if(s[lower]>96) s[lower]-=32;
+        if(s[upper]>96) s[upper]-=32;
+        if(!inBound(s[lower]))
+            lower++;
+        else if(!inBound(s[upper]))
+            upper--;
+        else if (s[lower] != s[upper])
+            return false;
+        else{
+            lower++; upper--;
+        }
     }
-    return 0;
+    return true;
 }
 
 int main(){
-    int array[] = {3,0,6,1,5};
+    char array[] = "0a";
     int arraySize = 5;
-    printf("%d\n",hIndex(array, arraySize));
+    printf("%d\n",isPalindrome(array));
     for(int i = 0; i < arraySize; i++)
         printf("%d\t", array[i]);
     return 0;
