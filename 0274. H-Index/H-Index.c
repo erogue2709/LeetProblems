@@ -1,3 +1,4 @@
+#include <cstddef>
 void pushSort(int* citations, int idxAt, int* hLimAt){
     for(int idx = 0; idx <= *hLimAt; idx++){
         if(citations[idx] < citations[idxAt]){
@@ -30,5 +31,7 @@ int hIndex(int* citations, int citationsSize) {
         cptH += bucket[j];
         if(cptH>=j) return j;
     }
+    free(bucket);
+    bucket = NULL;
     return 0;
 }
