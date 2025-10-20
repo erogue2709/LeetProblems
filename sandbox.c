@@ -38,6 +38,10 @@ int main(){
     int arraySize = 5;
     // printf("%d\n",searchInsert(array, sizeof(array)/sizeof(int),1309));
     printf("%d\n",searchInsert(array, sizeof(array)/sizeof(int),2));
+    int div = 3;
+    int d = 35/div;
+    float f = 35.0/div;
+    printf("d:%d\tf:%f",d, f);
     // for(int i = 0; i < arraySize; i++)
     //     printf("%d\t", array[i]);
     return 0;
